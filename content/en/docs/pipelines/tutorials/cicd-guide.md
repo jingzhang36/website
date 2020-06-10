@@ -33,9 +33,9 @@ Kubeflow Pipelines and Google Cloud Build. To try this example out, we assume
 our users have the basic understanding of Github, Google Cloud Build and the
 Kubeflow Pipelines.
 
-## An Example of Setting Up A Continuous Integration With The House Price Prediction Pipeline
+## Continuous integration example with the house price prediction pipeline
 
-### 1. Prerequites
+### 1. Prerequisites
 
 You'll need to
 - Create your own Google Cloud Project.
@@ -46,21 +46,22 @@ Please use the default namespace *kubeflow* for the purpose of this example.
 - Clone your fork to your local workstation.
 - Create a local git branch, say ci_example. And later on, any updates to the
 sample pipeline will be made on this branch.
+- Loadbalancer for ml-pipeline server.
 - On your local workstation
     - Install [Docker](https://www.docker.com/get-started).
     - Install the [Kubeflow Pipelines SDK](https://www.kubeflow.org/docs/pipelines/sdk/install-sdk/).
 
-### 3. Compile And Upload The Initial Housing Price Prediction Pipeline Version
+### 2. Compile and upload the initial house price prediction pipeline version
 
-- On your local ci_example branch, [compile](https://www.kubeflow.org/docs/pipelines/sdk/build-component/#compile-the-pipeline) the Housing Price Prediction pipeline. The source file of Housing Price Predication pipeline is [samples/contrib/versioned-pipeline-ci-samples/kaggle-ci-sample/pipeline.py](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/versioned-pipeline-ci-samples/kaggle-ci-sample/pipeline.py).
+- On your local ci_example branch, [compile](https://www.kubeflow.org/docs/pipelines/sdk/build-component/#compile-the-pipeline) the House Price Prediction pipeline. The source file of House Price Predication pipeline is [samples/contrib/versioned-pipeline-ci-samples/kaggle-ci-sample/pipeline.py](https://github.com/kubeflow/pipelines/blob/master/samples/contrib/versioned-pipeline-ci-samples/kaggle-ci-sample/pipeline.py).
 
-### 4. Set up Google Cloud Build Trigger
+### 3. Set up Google Cloud Build trigger
 
 [Google Cloud Build](https://cloud.google.com/cloud-build/docs) supports
 automated builds using triggers. In particular, it supports Github triggers,
-e.g., the event of pushing changes to a certain Github branch can trigger a
+for example, the event of pushing changes to a certain Github branch can trigger a
 build in Google Cloud Build. Therefore, if we assume the updates to the pipeline
-mainfest will take place on the branch ci_sample, we can have set a trigger on
+manifest will take place on the branch ci_sample, we can have set a trigger on
 the push event on this branch. To set up a github trigger, two simple steps are
 needed.
 
@@ -72,3 +73,5 @@ forked repository in the place of jingzhang36/pipelines.
   <source src="/docs/videos/connect_repo.webm" type="video/webm">
 </video>
 - Create a trigger.
+- Give Cloud Build Service account the owner permission to cluster
+
